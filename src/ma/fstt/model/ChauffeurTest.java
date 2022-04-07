@@ -12,23 +12,23 @@ public class ChauffeurTest {
             chauffeurTransaction = new ChauffeurTransaction();
 
             //creating
-//            Chauffeur chauffeur = new Chauffeur("aharrar","omar","ramobar");
-//            chauffeurTransaction.save(chauffeur);
+            Chauffeur chauffeur = new Chauffeur("aharrar","omar","ramobar");
+            chauffeurTransaction.save(chauffeur);
 
             //reaching
-            Chauffeur chauffeur = chauffeurTransaction.getOne(6);
-//            System.out.println(chauffeur);
+            chauffeur = chauffeurTransaction.getOne(2);
+            System.out.println(chauffeur);
 //            List<Chauffeur> chauffeurList = chauffeurTransaction.getAll();
 //            for (Chauffeur chauffeur:chauffeurList){
 //                System.out.println(chauffeur);
 //            }
 
             //updating
-//            chauffeur.setCode("ramograna");
-//            chauffeurTransaction.update(chauffeur);
+            //chauffeur.setCode("ramograna");
+            //chauffeurTransaction.update(chauffeur);
 
             //deleting
-            chauffeurTransaction.delete(chauffeur);
+            //chauffeurTransaction.delete(chauffeur);
 
 
         } catch (SQLException e) {
