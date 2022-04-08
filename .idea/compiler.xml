@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="lib" />
         <module name="GConsommation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="GConsommation" target="11" />
+      <module name="lib" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

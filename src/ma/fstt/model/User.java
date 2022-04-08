@@ -11,6 +11,10 @@ public class User {
         this.prenom = prenom;
     }
 
+    public User() {
+
+    }
+
     public Integer getId() {
         return id;
     }

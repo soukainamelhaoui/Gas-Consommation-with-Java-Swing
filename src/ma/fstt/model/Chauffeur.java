@@ -9,6 +9,10 @@ public class Chauffeur extends User {
         this.code = code;
     }
 
+    public Chauffeur() {
+        super();
+    }
+
     public String getCode() {
         return code;
     }
