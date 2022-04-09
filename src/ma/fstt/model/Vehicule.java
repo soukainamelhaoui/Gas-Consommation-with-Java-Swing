@@ -5,7 +5,16 @@ public class Vehicule {
     protected String numero;
     protected String model;
     protected int capaRes;
+    protected int nbrSiege;
     protected double poids;
+
+    public Vehicule(int idVehicule, String numero, String model, int capaRes, double poids, int nbrSiege) {
+        this.idVehicule = idVehicule;
+        this.numero = numero;
+        this.model = model;
+        this.capaRes = capaRes;
+        this.poids = poids;
+    }
 
     public Vehicule(int idVehicule, String numero, String model, int capaRes, double poids) {
         this.idVehicule = idVehicule;
@@ -13,6 +22,11 @@ public class Vehicule {
         this.model = model;
         this.capaRes = capaRes;
         this.poids = poids;
+
+    }
+
+    public Vehicule() {
+
     }
 
     public int getIdVehicule() {
