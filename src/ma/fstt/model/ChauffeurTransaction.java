@@ -25,7 +25,7 @@ public class ChauffeurTransaction extends BaseTransaction<Chauffeur> {
     @Override
     public void update(Chauffeur object) throws SQLException {
 
-        String request = "UPDATE User SET nom=? , prenom=?, type=? ,code=? WHERE User.id=?";
+        String request = "UPDATE User SET nom=? , prenom=?, type='CHAUFFEUR' ,code=? WHERE User.id=?";
 
         this.preparedStatement = this.connection.prepareStatement(request);
 

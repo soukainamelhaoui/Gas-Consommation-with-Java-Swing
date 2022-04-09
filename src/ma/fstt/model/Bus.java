@@ -2,8 +2,8 @@ package ma.fstt.model;
 
 public class Bus extends Vehicule{
     private int nbrSiege;
-    public Bus(int idBus, String numero, String model, int capaRes, double poids, int nbrSiege) {
-        super(idBus, numero, model, capaRes, poids);
+    public Bus(String numero, String model, int capaRes, double poids, int nbrSiege) {
+        super(numero, model, capaRes, poids);
         this.nbrSiege = nbrSiege;
     }
 
