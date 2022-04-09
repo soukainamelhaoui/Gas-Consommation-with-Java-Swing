@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class View extends JFrame {
-    private JTabbedPane view;
+    private JTabbedPane titleMission;
     private JPanel mainPanel;
     private JLabel titleChauffeur;
     private JLabel nomChauffeur;
@@ -47,6 +47,23 @@ public class View extends JFrame {
     private JLabel capaciteResCamion;
     private JLabel poidsCamion;
     private JLabel capaciteCamion;
+    private JTextField departMissionInput;
+    private JTextField arriveMissionInput;
+    private JButton saveMissionButton;
+    private JLabel departMission;
+    private JLabel arriveMission;
+    private JLabel kilometreMission;
+    private JLabel consommationMission;
+    private JTextField ConsMissionInput;
+    private JTextField metrageMissionInput;
+    private JTextField capResBusInput;
+    private JTextField poidBusInput;
+    private JTextField nbrSiegeBusInput;
+    private JLabel capBus;
+    private JLabel nbrSiegeBus;
+    private JTextField capResCammionInput;
+    private JTextField poidCammionInput;
+    private JTextField capCammionInput;
 
 
     public View() {
@@ -85,9 +102,9 @@ public class View extends JFrame {
 
                     bus.setNumero(numeroBusInput.getText());
                     bus.setModel(modelBusInput.getText());
-                    bus.setCapaRes((Integer) capaciteResBusInput.getValue());
-                    bus.setPoids((Float) poidsBusInput.getValue());
-                    bus.setNbrSiege((Integer) nbrSiegeInput.getValue());
+                    bus.setCapaRes(Integer.parseInt(capResBusInput.getText()));
+                    bus.setPoids(Double.parseDouble((poidBusInput.getText())));
+                    bus.setNbrSiege(Integer.parseInt(nbrSiegeBusInput.getText()));
 
                     busTransaction.save(bus);
 
@@ -106,11 +123,31 @@ public class View extends JFrame {
 
                     cammion.setNumero(numeroCamionInput.getText());
                     cammion.setModel(modelCamionInput.getText());
-                    cammion.setCapaRes((Integer) capaciteResCamionInput.getValue());
-                    cammion.setPoids((Float) poidsCamionInput.getValue());
-                    cammion.setCapacite((Integer) capaciteCamionInput.getValue());
+                    cammion.setCapaRes(Integer.parseInt(capResCammionInput.getText()));
+                    cammion.setPoids(Double.parseDouble(poidCammionInput.getText()));
+                    cammion.setCapacite(Integer.parseInt(capCammionInput.getText()));
 
                     cammionTrasaction.save(cammion);
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+        saveMissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Mission mission = new Mission();
+                try {
+                    MissionTransaction missionTransaction = new MissionTransaction();
+
+                    mission.setDepart(departMissionInput.getText());
+                    mission.setArrive(arriveMissionInput.getText());
+                    mission.setKilometrage(Double.valueOf(metrageMissionInput.getText()));
+                    mission.setConsommationTheo(Double.parseDouble(ConsMissionInput.getText()));
+
+                    missionTransaction.save(mission);
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -142,13 +179,13 @@ public class View extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        view = new JTabbedPane();
-        mainPanel.add(view, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        titleMission = new JTabbedPane();
+        mainPanel.add(titleMission, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         chauffeur = new JPanel();
         chauffeur.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
-        view.addTab("Chauffeurs", chauffeur);
+        titleMission.addTab("Chauffeurs", chauffeur);
         titleChauffeur = new JLabel();
-        titleChauffeur.setText("Entrez les informations du chauffeur");
+        titleChauffeur.setText("Entrer les informations du chauffeur");
         chauffeur.add(titleChauffeur, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nomChauffeur = new JLabel();
         nomChauffeur.setText("Nom");
@@ -172,7 +209,7 @@ public class View extends JFrame {
         chauffeur.add(saveChauffeurButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         vehicule = new JPanel();
         vehicule.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        view.addTab("Vehicules", vehicule);
+        titleMission.addTab("Vehicules", vehicule);
         vehiculeTypes = new JTabbedPane();
         vehicule.add(vehiculeTypes, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         bus = new JPanel();
@@ -184,28 +221,28 @@ public class View extends JFrame {
         modelBus = new JLabel();
         modelBus.setText("Model");
         bus.add(modelBus, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        label1.setText("Capacite Res");
-        bus.add(label1, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        capBus = new JLabel();
+        capBus.setText("Capacite Res");
+        bus.add(capBus, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         poidsBus = new JLabel();
         poidsBus.setText("Poids");
         bus.add(poidsBus, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        label2.setText("Nomre de siege");
-        bus.add(label2, new GridConstraints(4, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nbrSiegeBus = new JLabel();
+        nbrSiegeBus.setText("Nomre de siege");
+        bus.add(nbrSiegeBus, new GridConstraints(4, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         numeroBusInput = new JTextField();
         bus.add(numeroBusInput, new GridConstraints(0, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         modelBusInput = new JTextField();
         bus.add(modelBusInput, new GridConstraints(1, 2, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        capaciteResBusInput = new JFormattedTextField();
-        bus.add(capaciteResBusInput, new GridConstraints(2, 3, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        poidsBusInput = new JFormattedTextField();
-        bus.add(poidsBusInput, new GridConstraints(3, 4, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        nbrSiegeInput = new JFormattedTextField();
-        bus.add(nbrSiegeInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         saveBusButton = new JButton();
         saveBusButton.setText("Enregistrer");
         bus.add(saveBusButton, new GridConstraints(5, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        capResBusInput = new JTextField();
+        bus.add(capResBusInput, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        poidBusInput = new JTextField();
+        bus.add(poidBusInput, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        nbrSiegeBusInput = new JTextField();
+        bus.add(nbrSiegeBusInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         camion = new JPanel();
         camion.setLayout(new GridLayoutManager(6, 6, new Insets(0, 0, 0, 0), -1, -1));
         vehiculeTypes.addTab("Cammions", camion);
@@ -228,20 +265,44 @@ public class View extends JFrame {
         camion.add(numeroCamionInput, new GridConstraints(0, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         modelCamionInput = new JTextField();
         camion.add(modelCamionInput, new GridConstraints(1, 2, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        capaciteResCamionInput = new JFormattedTextField();
-        capaciteResCamionInput.setText("");
-        camion.add(capaciteResCamionInput, new GridConstraints(2, 3, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        poidsCamionInput = new JFormattedTextField();
-        camion.add(poidsCamionInput, new GridConstraints(3, 4, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        capaciteCamionInput = new JFormattedTextField();
-        capaciteCamionInput.setText("");
-        camion.add(capaciteCamionInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         saveCamionButton = new JButton();
         saveCamionButton.setText("Enregistrer");
         camion.add(saveCamionButton, new GridConstraints(5, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        capResCammionInput = new JTextField();
+        camion.add(capResCammionInput, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        poidCammionInput = new JTextField();
+        camion.add(poidCammionInput, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        capCammionInput = new JTextField();
+        camion.add(capCammionInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         mission = new JPanel();
-        mission.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        view.addTab("Missions", mission);
+        mission.setLayout(new GridLayoutManager(6, 5, new Insets(0, 0, 0, 0), -1, -1));
+        titleMission.addTab("Missions", mission);
+        final JLabel label1 = new JLabel();
+        label1.setText("Entrer les informations de la mission");
+        mission.add(label1, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        departMission = new JLabel();
+        departMission.setText("Lieu de depart");
+        mission.add(departMission, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        arriveMission = new JLabel();
+        arriveMission.setText("Lieu d'arrive");
+        mission.add(arriveMission, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        kilometreMission = new JLabel();
+        kilometreMission.setText("Kilometrage");
+        mission.add(kilometreMission, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        consommationMission = new JLabel();
+        consommationMission.setText("Consommation Estimee");
+        mission.add(consommationMission, new GridConstraints(4, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        departMissionInput = new JTextField();
+        mission.add(departMissionInput, new GridConstraints(1, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        arriveMissionInput = new JTextField();
+        mission.add(arriveMissionInput, new GridConstraints(2, 2, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        saveMissionButton = new JButton();
+        saveMissionButton.setText("Enregistrer");
+        mission.add(saveMissionButton, new GridConstraints(5, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        ConsMissionInput = new JTextField();
+        mission.add(ConsMissionInput, new GridConstraints(4, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        metrageMissionInput = new JTextField();
+        mission.add(metrageMissionInput, new GridConstraints(3, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**

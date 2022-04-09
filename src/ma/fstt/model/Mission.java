@@ -1,18 +1,21 @@
 package ma.fstt.model;
 
 public class Mission {
-    private int idMission;
+    private Integer idMission;
     private String depart;
     private String arrive;
-    private double kilometrage;
-    private double consommationTheo;
+    private Double kilometrage;
+    private Double consommationTheo;
 
-    public Mission(int idMission, String depart, String arrive, double kilometrage, double consommationTheo) {
-        this.idMission = idMission;
+    public Mission(String depart, String arrive, Double kilometrage, Double consommationTheo) {
         this.depart = depart;
         this.arrive = arrive;
         this.kilometrage = kilometrage;
         this.consommationTheo = consommationTheo;
+    }
+
+    public Mission() {
+
     }
 
     public int getIdMission() {
@@ -43,7 +46,7 @@ public class Mission {
         return kilometrage;
     }
 
-    public void setKilometrage(double kilometrage) {
+    public void setKilometrage(Double kilometrage) {
         this.kilometrage = kilometrage;
     }
 

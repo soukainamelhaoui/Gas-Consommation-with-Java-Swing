@@ -8,16 +8,7 @@ public class Vehicule {
     protected int nbrSiege;
     protected double poids;
 
-    public Vehicule(int idVehicule, String numero, String model, int capaRes, double poids, int nbrSiege) {
-        this.idVehicule = idVehicule;
-        this.numero = numero;
-        this.model = model;
-        this.capaRes = capaRes;
-        this.poids = poids;
-    }
-
-    public Vehicule(int idVehicule, String numero, String model, int capaRes, double poids) {
-        this.idVehicule = idVehicule;
+    public Vehicule(String numero, String model, int capaRes, double poids) {
         this.numero = numero;
         this.model = model;
         this.capaRes = capaRes;
