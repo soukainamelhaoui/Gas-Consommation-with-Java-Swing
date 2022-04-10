@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ma.fstt.ihm.Database">
+  <grid id="27dc6" binding="Database" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="740" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="6d4f0" binding="chauffeurPane">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="2f641" binding="chauffeurTab">
+            <constraints>
+              <tabbedpane title="Chauffeur"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="179f" class="javax.swing.JTable" binding="chauffeurTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="526a8" binding="cammionTab">
+            <constraints>
+              <tabbedpane title="Cammion"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a103e" class="javax.swing.JTable" binding="cammionTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="ade1f" binding="busTab">
+            <constraints>
+              <tabbedpane title="Bus"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="68761" class="javax.swing.JTable" binding="busTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="599e5" binding="missionTab">
+            <constraints>
+              <tabbedpane title="Mission"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="84a48" class="javax.swing.JTable" binding="missionTable">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
