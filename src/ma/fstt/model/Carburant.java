@@ -5,18 +5,20 @@ public class Carburant {
     private int idCarburant;
     private String libelle;
     private double pu;
-    private Date date;
+    private String date;
     private double quantity;
-    private Vehicule vehicule;
+    private int idVehicule;
 
-    public Carburant(int idCarburant, String libelle, double pu, Date date, double quantity, Vehicule vehicule){
+    public Carburant(String libelle, double pu, String date, double quantity, int idVehicule){
         this.idCarburant = idCarburant;
         this.libelle = libelle;
         this.pu = pu;
         this.date = date;
         this.quantity = quantity;
-        this.vehicule = vehicule;
+        this.idVehicule = idVehicule;
     }
+
+    public  Carburant(){}
 
     public int getIdCarburant() {
         return idCarburant;
@@ -42,11 +44,11 @@ public class Carburant {
         this.pu = pu;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -58,12 +60,12 @@ public class Carburant {
         this.quantity = quantity;
     }
 
-    public Vehicule getVehicule() {
-        return vehicule;
+    public int getIdVehicule() {
+        return idVehicule;
     }
 
-    public void setVehicule(Vehicule vehicule) {
-        this.vehicule = vehicule;
+    public void setIdVehicule(int idVehicule) {
+        this.idVehicule = idVehicule;
     }
 
     @Override

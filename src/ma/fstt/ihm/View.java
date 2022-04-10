@@ -2,6 +2,7 @@ package ma.fstt.ihm;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import ma.fstt.model.*;
 
 import javax.swing.*;
@@ -9,9 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class View extends JFrame {
-    private JTabbedPane titleMission;
+    private JTabbedPane main;
     private JPanel mainPanel;
     private JLabel titleChauffeur;
     private JLabel nomChauffeur;
@@ -28,9 +30,6 @@ public class View extends JFrame {
     private JPanel camion;
     private JTextField numeroBusInput;
     private JTextField modelBusInput;
-    private JFormattedTextField capaciteResBusInput;
-    private JFormattedTextField poidsBusInput;
-    private JFormattedTextField nbrSiegeInput;
     private JLabel numeroBus;
     private JLabel modelBus;
     private JLabel poidsBus;
@@ -38,9 +37,6 @@ public class View extends JFrame {
     private JButton saveBusButton;
     private JTextField numeroCamionInput;
     private JTextField modelCamionInput;
-    private JFormattedTextField capaciteResCamionInput;
-    private JFormattedTextField poidsCamionInput;
-    private JFormattedTextField capaciteCamionInput;
     private JButton saveCamionButton;
     private JLabel numeroCamion;
     private JLabel modelCamion;
@@ -64,6 +60,31 @@ public class View extends JFrame {
     private JTextField capResCammionInput;
     private JTextField poidCammionInput;
     private JTextField capCammionInput;
+    private JPanel trajet;
+    private JLabel titleMission;
+    private JLabel titleTrajet;
+    private JTextField dateDepartInput;
+    private JTextField dateArriveInput;
+    private JTextField consomTrajetInput;
+    private JTextField missionTrajetInput;
+    private JTextField vehiculeTrajetInput;
+    private JButton saveTrajetButton;
+    private JLabel dateDepart;
+    private JLabel dareArrive;
+    private JLabel consomationTrajet;
+    private JLabel missionTrajet;
+    private JLabel vehiculeTrajet;
+    private JTextField libelleCarburantInput;
+    private JTextField puCarburantInput;
+    private JTextField dateCarburantInput;
+    private JTextField quantiteCarburantInput;
+    private JTextField vehiculeCarburantInput;
+    private JButton saveCarburantButton;
+    private JLabel vehiculeCarburant;
+    private JLabel quantiteCarburant;
+    private JLabel dateCarburant;
+    private JLabel puCarburant;
+    private JLabel libelleCarburant;
 
 
     public View() {
@@ -155,6 +176,49 @@ public class View extends JFrame {
 
             }
         });
+        saveTrajetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Trajet trajet = new Trajet();
+                try {
+                    TrajetTransaction trajetTransaction = new TrajetTransaction();
+
+                    trajet.setDateDepart(dateDepartInput.getText());
+                    trajet.setDateArrive(dateArriveInput.getText());
+                    trajet.setConsommation(Double.valueOf(consomTrajetInput.getText()));
+                    trajet.setIdMission(Integer.parseInt(missionTrajetInput.getText()));
+                    trajet.setIdVehicule(Integer.parseInt(vehiculeTrajetInput.getText()));
+
+                    trajetTransaction.save(trajet);
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        saveCarburantButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Carburant carburant = new Carburant();
+                try {
+                    CarburantTransaction carburantTransaction = new CarburantTransaction();
+
+                    carburant.setLibelle(libelleCarburantInput.getText());
+                    carburant.setPu(Double.parseDouble(puCarburantInput.getText()));
+                    carburant.setQuantity(Double.valueOf(quantiteCarburantInput.getText()));
+                    carburant.setIdVehicule(Integer.parseInt(vehiculeCarburantInput.getText()));
+
+                    carburantTransaction.save(carburant);
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -179,11 +243,11 @@ public class View extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        titleMission = new JTabbedPane();
-        mainPanel.add(titleMission, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        main = new JTabbedPane();
+        mainPanel.add(main, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         chauffeur = new JPanel();
         chauffeur.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
-        titleMission.addTab("Chauffeurs", chauffeur);
+        main.addTab("Chauffeurs", chauffeur);
         titleChauffeur = new JLabel();
         titleChauffeur.setText("Entrer les informations du chauffeur");
         chauffeur.add(titleChauffeur, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -209,7 +273,7 @@ public class View extends JFrame {
         chauffeur.add(saveChauffeurButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         vehicule = new JPanel();
         vehicule.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        titleMission.addTab("Vehicules", vehicule);
+        main.addTab("Vehicules", vehicule);
         vehiculeTypes = new JTabbedPane();
         vehicule.add(vehiculeTypes, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         bus = new JPanel();
@@ -276,10 +340,10 @@ public class View extends JFrame {
         camion.add(capCammionInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         mission = new JPanel();
         mission.setLayout(new GridLayoutManager(6, 5, new Insets(0, 0, 0, 0), -1, -1));
-        titleMission.addTab("Missions", mission);
-        final JLabel label1 = new JLabel();
-        label1.setText("Entrer les informations de la mission");
-        mission.add(label1, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        main.addTab("Missions", mission);
+        titleMission = new JLabel();
+        titleMission.setText("Entrer les informations de la mission");
+        mission.add(titleMission, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         departMission = new JLabel();
         departMission.setText("Lieu de depart");
         mission.add(departMission, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -303,6 +367,42 @@ public class View extends JFrame {
         mission.add(ConsMissionInput, new GridConstraints(4, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         metrageMissionInput = new JTextField();
         mission.add(metrageMissionInput, new GridConstraints(3, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        trajet = new JPanel();
+        trajet.setLayout(new GridLayoutManager(7, 7, new Insets(0, 0, 0, 0), -1, -1));
+        main.addTab("Trajets", trajet);
+        titleTrajet = new JLabel();
+        titleTrajet.setText("Entrer les details du trajet");
+        trajet.add(titleTrajet, new GridConstraints(0, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        trajet.add(spacer1, new GridConstraints(1, 6, 5, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        dateDepart = new JLabel();
+        dateDepart.setText("Date de depart");
+        trajet.add(dateDepart, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        dareArrive = new JLabel();
+        dareArrive.setText("Date d'arrive");
+        trajet.add(dareArrive, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        consomationTrajet = new JLabel();
+        consomationTrajet.setText("Consommation");
+        trajet.add(consomationTrajet, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        missionTrajet = new JLabel();
+        missionTrajet.setText("Mission numero ");
+        trajet.add(missionTrajet, new GridConstraints(4, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        vehiculeTrajet = new JLabel();
+        vehiculeTrajet.setText("Vehicule numero");
+        trajet.add(vehiculeTrajet, new GridConstraints(5, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        dateDepartInput = new JTextField();
+        trajet.add(dateDepartInput, new GridConstraints(1, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        dateArriveInput = new JTextField();
+        trajet.add(dateArriveInput, new GridConstraints(2, 2, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        consomTrajetInput = new JTextField();
+        trajet.add(consomTrajetInput, new GridConstraints(3, 3, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        missionTrajetInput = new JTextField();
+        trajet.add(missionTrajetInput, new GridConstraints(4, 4, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        vehiculeTrajetInput = new JTextField();
+        trajet.add(vehiculeTrajetInput, new GridConstraints(5, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        saveTrajetButton = new JButton();
+        saveTrajetButton.setText("Enregistrer");
+        trajet.add(saveTrajetButton, new GridConstraints(6, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

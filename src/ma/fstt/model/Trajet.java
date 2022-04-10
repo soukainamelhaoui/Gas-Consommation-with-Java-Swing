@@ -4,19 +4,22 @@ import java.util.Date;
 
 public class Trajet {
     private int idTrajet;
-    private Date dateDepart;
-    private Date dateArrive;
+    private String dateDepart;
+    private String dateArrive;
     private double consommation;
-    private Vehicule vehicule;
-    private Mission mission;
+    private int idVehicule;
+    private int idMission;
 
-    public Trajet(int idTrajet, Date dateDepart, Date dateArrive, double consommation, Vehicule vehicule, Mission mission) {
-        this.idTrajet = idTrajet;
+    public Trajet(String dateDepart, String dateArrive, double consommation, int idVehicule, int idMission) {
         this.dateDepart = dateDepart;
         this.dateArrive = dateArrive;
         this.consommation = consommation;
-        this.vehicule = vehicule;
-        this.mission = mission;
+        this.idVehicule = idVehicule;
+        this.idMission = idMission;
+    }
+
+    public Trajet() {
+
     }
 
     public int getIdTrajet() {
@@ -27,19 +30,19 @@ public class Trajet {
         this.idTrajet = idTrajet;
     }
 
-    public Date getDateDepart() {
+    public String getDateDepart() {
         return dateDepart;
     }
 
-    public void setDateDepart(Date dateDepart) {
+    public void setDateDepart(String dateDepart) {
         this.dateDepart = dateDepart;
     }
 
-    public Date getDateArrive() {
+    public String getDateArrive() {
         return dateArrive;
     }
 
-    public void setDateArrive(Date dateArrive) {
+    public void setDateArrive(String dateArrive) {
         this.dateArrive = dateArrive;
     }
 
@@ -51,20 +54,20 @@ public class Trajet {
         this.consommation = consommation;
     }
 
-    public Vehicule getVehicule() {
-        return vehicule;
+    public int getIdVehicule() {
+        return idVehicule;
     }
 
-    public void setVehicule(Vehicule vehicule) {
-        this.vehicule = vehicule;
+    public void setIdVehicule(int idVehicule) {
+        this.idVehicule = idVehicule;
     }
 
-    public Mission getMission() {
-        return mission;
+    public int getIdMission() {
+        return idMission;
     }
 
-    public void setMission(Mission mission) {
-        this.mission = mission;
+    public void setIdMission(int idMission) {
+        this.idMission = idMission;
     }
 
     @Override
@@ -74,8 +77,8 @@ public class Trajet {
                 ", dateDepart=" + dateDepart +
                 ", dateArrive=" + dateArrive +
                 ", consommation=" + consommation +
-                ", vehicule=" + vehicule +
-                ", mission=" + mission +
+                ", vehicule=" + idVehicule +
+                ", mission=" + idMission +
                 '}';
     }
 }

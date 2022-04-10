@@ -1,5 +1,6 @@
 package ma.fstt.model;
 
+import java.text.ParseException;
 import java.util.*;
 import java.sql.*;
 
@@ -21,7 +22,7 @@ public abstract class BaseTransaction<T> {
 
 
 
-    public abstract void save(T object) throws SQLException;
+    public abstract void save(T object) throws SQLException, ParseException;
     public abstract void update(T object) throws SQLException;
     public abstract void delete(T object) throws SQLException;
     public abstract T getOne(Integer id) throws SQLException;
