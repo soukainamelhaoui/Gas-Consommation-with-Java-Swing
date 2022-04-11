@@ -208,6 +208,7 @@ public class View extends JFrame {
 
                     carburant.setLibelle(libelleCarburantInput.getText());
                     carburant.setPu(Double.parseDouble(puCarburantInput.getText()));
+                    carburant.setDate(dateCarburantInput.getText());
                     carburant.setQuantity(Double.valueOf(quantiteCarburantInput.getText()));
                     carburant.setIdVehicule(Integer.parseInt(vehiculeCarburantInput.getText()));
 
@@ -435,7 +436,7 @@ public class View extends JFrame {
         vehiculeCarburantInput = new JTextField();
         panel1.add(vehiculeCarburantInput, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         saveCarburantButton = new JButton();
-        saveCarburantButton.setText("Button");
+        saveCarburantButton.setText("Enregistrer");
         panel1.add(saveCarburantButton, new GridConstraints(5, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
