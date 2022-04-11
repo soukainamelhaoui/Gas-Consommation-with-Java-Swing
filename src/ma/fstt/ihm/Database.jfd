@@ -1,0 +1,107 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :2:2:p, comp chauffeurPane:::p::p}}"
+			"$verticalGroup": "par l {comp chauffeurPane:::p:342:p}"
+		} ) {
+			name: "Database"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "chauffeurPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "ChauffeurContainer"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "supprimerChauffeurButton"
+						"text": "SUPPRIMER"
+						"background": &Color0 new java.awt.Color( 60, 60, 53, 255 )
+						"foreground": &Color1 new java.awt.Color( 254, 255, 241, 255 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "supprimerChauffeurBt", false ) )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "North"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "chauffeurTab"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "chauffeurTable"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Chauffeur"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {comp cammionTab:::p:810:p, comp supprimerCammionButton:::::x}, space ::9:x}}"
+					"$verticalGroup": "par l {seq {comp supprimerCammionButton:::p:30:p, space :::p, comp cammionTab:::p:268:p}}"
+				} ) {
+					name: "cammionContainer"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "supprimerCammionButton"
+						"text": "SUPPRIMER"
+						"background": #Color0
+						"foreground": #Color1
+						"focusPainted": false
+						"focusable": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "supprimerCammionBt", false ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "cammionTab"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "cammionTable"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Cammion"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "busContainer"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "supprimerBusButton"
+						"text": "SUPPRIMER"
+						"background": #Color0
+						"foreground": #Color1
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "supprimerBusBt", false ) )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "North"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "busTab"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "busTable"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Bus"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {par t {comp supprimerMissionButton:::::x, comp missionTab:::p:810:p}, space :0:0:x}}"
+					"$verticalGroup": "par l {seq {comp supprimerMissionButton:::p:38:p, space :::p, comp missionTab:::p:248:p, space :::p}}"
+				} ) {
+					name: "missionContainer"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "supprimerMissionButton"
+						"text": "SUPPRIMER"
+						"background": #Color0
+						"foreground": #Color1
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "supprimerMissionBt", false ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "missionTab"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "missionTable"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Mission"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 25, 50 )
+			"size": new java.awt.Dimension( 815, 290 )
+		} )
+	}
+}
