@@ -205,6 +205,55 @@ public class Database extends JFrame {
             }
         });
 
+//    EDIT BUTTON============================
+
+        editChauffeurButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChauffeurTableModel table = (ChauffeurTableModel) chauffeurTable.getModel();
+
+                    int row = chauffeurTable.getSelectedRow();
+                    int value = (int) table.getValueAt(row, 0);
+
+                    ChauffeurEdit chauffeurEdit = new ChauffeurEdit(value);
+            }
+        });
+
+        editCammionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                CammionTableModel table = (CammionTableModel) cammionTable.getModel();
+
+                int row = cammionTable.getSelectedRow();
+                int value = (int) table.getValueAt(row, 0);
+
+                CammionEdit cammionEdit = new CammionEdit(value);
+            }
+        });
+
+        editBusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                BusTableModel table = (BusTableModel) busTable.getModel();
+
+                int row = busTable.getSelectedRow();
+                int value = (int) table.getValueAt(row, 0);
+
+                BusEdit busEdit = new BusEdit(value);
+            }
+        });
+
+        editMissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                MissionTableModel table = (MissionTableModel) missionTable.getModel();
+
+                int row = missionTable.getSelectedRow();
+                int value = (int) table.getValueAt(row, 0);
+
+                MissionEdit missionEdit = new MissionEdit(value);
+            }
+        });
     }
 
 
@@ -229,22 +278,26 @@ public class Database extends JFrame {
         chauffeurTab = new JScrollPane();
         chauffeurTable = new JTable();
         refreshChauffeurButton = new JButton();
+        editChauffeurButton = new JButton();
         cammionContainer = new JPanel();
         supprimerCammionButton = new JButton();
         cammionTab = new JScrollPane();
         cammionTable = new JTable();
         refreshCammionButton = new JButton();
+        editCammionButton = new JButton();
         busContainer = new JPanel();
         supprimerBusButton = new JButton();
         busTab = new JScrollPane();
         busTable = new JTable();
         refreshBusButton = new JButton();
+        editBusButton = new JButton();
         missionContainer = new JPanel();
         supprimerMissionButton = new JButton();
         missionTab = new JScrollPane();
         missionTable = new JTable();
         displayDetailsButton = new JButton();
         refreshMissionButton = new JButton();
+        editMissionButton = new JButton();
 
         //======== Database ========
         {
@@ -270,6 +323,11 @@ public class Database extends JFrame {
                     refreshChauffeurButton.setBackground(new Color(60, 60, 53));
                     refreshChauffeurButton.setForeground(new Color(254, 255, 241));
 
+                    //---- editChauffeurButton ----
+                    editChauffeurButton.setText("MODIFIER");
+                    editChauffeurButton.setBackground(new Color(60, 60, 53));
+                    editChauffeurButton.setForeground(new Color(254, 255, 241));
+
                     GroupLayout ChauffeurContainerLayout = new GroupLayout(ChauffeurContainer);
                     ChauffeurContainer.setLayout(ChauffeurContainerLayout);
                     ChauffeurContainerLayout.setHorizontalGroup(
@@ -278,9 +336,12 @@ public class Database extends JFrame {
                                 .addGroup(ChauffeurContainerLayout.createParallelGroup()
                                     .addComponent(chauffeurTab, GroupLayout.PREFERRED_SIZE, 886, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(ChauffeurContainerLayout.createSequentialGroup()
-                                        .addComponent(supprimerChauffeurButton, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap()
+                                        .addComponent(supprimerChauffeurButton, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(refreshChauffeurButton, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(refreshChauffeurButton, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(editChauffeurButton, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
                     );
                     ChauffeurContainerLayout.setVerticalGroup(
@@ -288,7 +349,8 @@ public class Database extends JFrame {
                             .addGroup(ChauffeurContainerLayout.createSequentialGroup()
                                 .addGroup(ChauffeurContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(supprimerChauffeurButton)
-                                    .addComponent(refreshChauffeurButton))
+                                    .addComponent(refreshChauffeurButton)
+                                    .addComponent(editChauffeurButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(chauffeurTab, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
                     );
@@ -317,6 +379,13 @@ public class Database extends JFrame {
                     refreshCammionButton.setFocusPainted(false);
                     refreshCammionButton.setFocusable(false);
 
+                    //---- editCammionButton ----
+                    editCammionButton.setText("MODIFIER");
+                    editCammionButton.setBackground(new Color(60, 60, 53));
+                    editCammionButton.setForeground(new Color(254, 255, 241));
+                    editCammionButton.setFocusPainted(false);
+                    editCammionButton.setFocusable(false);
+
                     GroupLayout cammionContainerLayout = new GroupLayout(cammionContainer);
                     cammionContainer.setLayout(cammionContainerLayout);
                     cammionContainerLayout.setHorizontalGroup(
@@ -325,9 +394,11 @@ public class Database extends JFrame {
                                 .addGroup(cammionContainerLayout.createParallelGroup()
                                     .addComponent(cammionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(cammionContainerLayout.createSequentialGroup()
-                                        .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(refreshCammionButton, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(refreshCammionButton, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(editCammionButton, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(82, Short.MAX_VALUE))
                     );
                     cammionContainerLayout.setVerticalGroup(
@@ -335,7 +406,8 @@ public class Database extends JFrame {
                             .addGroup(cammionContainerLayout.createSequentialGroup()
                                 .addGroup(cammionContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(refreshCammionButton))
+                                    .addComponent(refreshCammionButton)
+                                    .addComponent(editCammionButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cammionTab, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))
                     );
@@ -360,6 +432,11 @@ public class Database extends JFrame {
                     refreshBusButton.setBackground(new Color(60, 60, 53));
                     refreshBusButton.setForeground(new Color(254, 255, 241));
 
+                    //---- editBusButton ----
+                    editBusButton.setText("MODIFIER");
+                    editBusButton.setBackground(new Color(60, 60, 53));
+                    editBusButton.setForeground(new Color(254, 255, 241));
+
                     GroupLayout busContainerLayout = new GroupLayout(busContainer);
                     busContainer.setLayout(busContainerLayout);
                     busContainerLayout.setHorizontalGroup(
@@ -368,9 +445,11 @@ public class Database extends JFrame {
                                 .addGroup(busContainerLayout.createParallelGroup()
                                     .addComponent(busTab, GroupLayout.PREFERRED_SIZE, 880, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(busContainerLayout.createSequentialGroup()
-                                        .addComponent(supprimerBusButton, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(refreshBusButton, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(supprimerBusButton, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(refreshBusButton, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(editBusButton, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
                     );
                     busContainerLayout.setVerticalGroup(
@@ -378,7 +457,8 @@ public class Database extends JFrame {
                             .addGroup(busContainerLayout.createSequentialGroup()
                                 .addGroup(busContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(supprimerBusButton)
-                                    .addComponent(refreshBusButton))
+                                    .addComponent(refreshBusButton)
+                                    .addComponent(editBusButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(busTab, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
                     );
@@ -408,6 +488,11 @@ public class Database extends JFrame {
                     refreshMissionButton.setBackground(new Color(60, 60, 53));
                     refreshMissionButton.setForeground(new Color(254, 255, 241));
 
+                    //---- editMissionButton ----
+                    editMissionButton.setText("MODIFIER");
+                    editMissionButton.setBackground(new Color(60, 60, 53));
+                    editMissionButton.setForeground(new Color(254, 255, 241));
+
                     GroupLayout missionContainerLayout = new GroupLayout(missionContainer);
                     missionContainer.setLayout(missionContainerLayout);
                     missionContainerLayout.setHorizontalGroup(
@@ -417,12 +502,14 @@ public class Database extends JFrame {
                                 .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 38, Short.MAX_VALUE))
                             .addGroup(missionContainerLayout.createSequentialGroup()
-                                .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(displayDetailsButton, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 193, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMissionButton, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 131, Short.MAX_VALUE))
                     );
                     missionContainerLayout.setVerticalGroup(
                         missionContainerLayout.createParallelGroup()
@@ -430,7 +517,8 @@ public class Database extends JFrame {
                                 .addGroup(missionContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(displayDetailsButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
                                 .addGap(12, 12, 12)
                                 .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -463,21 +551,25 @@ public class Database extends JFrame {
     private JScrollPane chauffeurTab;
     private JTable chauffeurTable;
     private JButton refreshChauffeurButton;
+    private JButton editChauffeurButton;
     private JPanel cammionContainer;
     private JButton supprimerCammionButton;
     private JScrollPane cammionTab;
     private JTable cammionTable;
     private JButton refreshCammionButton;
+    private JButton editCammionButton;
     private JPanel busContainer;
     private JButton supprimerBusButton;
     private JScrollPane busTab;
     private JTable busTable;
     private JButton refreshBusButton;
+    private JButton editBusButton;
     private JPanel missionContainer;
     private JButton supprimerMissionButton;
     private JScrollPane missionTab;
     private JTable missionTable;
     private JButton displayDetailsButton;
     private JButton refreshMissionButton;
+    private JButton editMissionButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

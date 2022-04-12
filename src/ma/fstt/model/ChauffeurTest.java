@@ -16,7 +16,7 @@ public class ChauffeurTest {
             chauffeurTransaction.save(chauffeur);
 
             //reaching
-            chauffeur = chauffeurTransaction.getOne(2);
+//            chauffeur = chauffeurTransaction.getOne(2);
             System.out.println(chauffeur);
 //            List<Chauffeur> chauffeurList = chauffeurTransaction.getAll();
 //            for (Chauffeur chauffeur:chauffeurList){
@@ -24,8 +24,8 @@ public class ChauffeurTest {
 //            }
 
             //updating
-            //chauffeur.setCode("ramograna");
-            //chauffeurTransaction.update(chauffeur);
+            chauffeur.setCode("ramoooooooooooooooooooo");
+            chauffeurTransaction.update(chauffeur);
 
             //deleting
             //chauffeurTransaction.delete(chauffeur);
