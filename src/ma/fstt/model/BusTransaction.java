@@ -43,12 +43,12 @@ public class BusTransaction extends BaseTransaction<Bus>{
     }
 
     @Override
-    public void delete(Bus object) throws SQLException {
+    public void delete(int id) throws SQLException {
         String request = "DELETE FROM Vehicule WHERE Vehicule.id=?";
 
         this.preparedStatement = this.connection.prepareStatement(request);
 
-        this.preparedStatement.setInt(1,object.getIdVehicule());
+        this.preparedStatement.setInt(1,id);
 
         this.preparedStatement.execute();
 

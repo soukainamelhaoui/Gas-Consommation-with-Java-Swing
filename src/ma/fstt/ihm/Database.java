@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.*;
 import ma.fstt.model.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,7 +35,89 @@ public class Database extends JFrame {
         List<Mission> missionList = missionTransaction.getAll();
         missionTable = new JTable(new MissionTableModel(missionList));
         missionTab.setViewportView(missionTable);
+
+        supprimerChauffeurButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChauffeurTableModel table = (ChauffeurTableModel) chauffeurTable.getModel();
+
+                try {
+                    ChauffeurTransaction chauffeurTransaction = new ChauffeurTransaction();
+
+                    int row = chauffeurTable.getSelectedRow();
+                    int value = (int) table.getValueAt(row, 0);
+
+                    chauffeurTransaction.delete(value);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        supprimerBusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                BusTableModel table = (BusTableModel) busTable.getModel();
+
+                try {
+                    BusTransaction busTransaction = new BusTransaction();
+
+                    int row = busTable.getSelectedRow();
+                    int value = (int) table.getValueAt(row, 0);
+
+                    busTransaction.delete(value);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        supprimerCammionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                CammionTableModel table = (CammionTableModel) cammionTable.getModel();
+
+                try {
+                    CammionTrasaction cammionTrasaction = new CammionTrasaction();
+
+                    int row = cammionTable.getSelectedRow();
+                    int value = (int) table.getValueAt(row, 0);
+
+                    cammionTrasaction.delete(value);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        supprimerMissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                MissionTableModel table = (MissionTableModel) missionTable.getModel();
+
+                try {
+                    MissionTransaction missionTrasaction = new MissionTransaction();
+
+                    int row = missionTable.getSelectedRow();
+                    int value = (int) table.getValueAt(row, 0);
+
+                    missionTrasaction.delete(value);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
+
+
 
     public static void main() throws SQLException {
         Database database = new Database();
@@ -42,11 +125,14 @@ public class Database extends JFrame {
         database.setTitle("GConsommation");
         database.setSize(1200, 400);
         database.setVisible(true);
+
+
     }
 
     private void supprimerChauffeurBt() {
         // TODO add your code here
     }
+
 
     private void supprimerCammionBt() {
         // TODO add your code here
@@ -59,11 +145,6 @@ public class Database extends JFrame {
     private void supprimerMissionBt() {
         // TODO add your code here
     }
-
-
-
-
-
 
 
     private void initComponents() {

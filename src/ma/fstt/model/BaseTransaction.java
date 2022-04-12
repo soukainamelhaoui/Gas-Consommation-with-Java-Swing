@@ -24,7 +24,9 @@ public abstract class BaseTransaction<T> {
 
     public abstract void save(T object) throws SQLException, ParseException;
     public abstract void update(T object) throws SQLException;
-    public abstract void delete(T object) throws SQLException;
+    public abstract void delete(int id) throws SQLException;
+
+
     public abstract T getOne(Integer id) throws SQLException;
     public abstract List<T> getAll() throws SQLException;
 

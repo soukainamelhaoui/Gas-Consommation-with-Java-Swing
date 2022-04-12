@@ -32,7 +32,7 @@ public class TrajetTransaction extends BaseTransaction<Trajet>{
     }
 
     @Override
-    public void delete(Trajet object) throws SQLException {
+    public void delete(int id) throws SQLException {
 
     }
 
