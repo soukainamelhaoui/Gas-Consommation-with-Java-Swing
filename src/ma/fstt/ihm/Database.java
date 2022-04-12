@@ -48,6 +48,9 @@ public class Database extends JFrame {
                     int value = (int) table.getValueAt(row, 0);
 
                     chauffeurTransaction.delete(value);
+                    List<Chauffeur> chauffeurList = chauffeurTransaction.getAll();
+                    chauffeurTable = new JTable(new ChauffeurTableModel(chauffeurList));
+                    chauffeurTab.setViewportView(chauffeurTable);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -69,6 +72,10 @@ public class Database extends JFrame {
 
                     busTransaction.delete(value);
 
+                    List<Bus> busList = busTransaction.getAll();
+                    busTable = new JTable(new BusTableModel(busList));
+                    busTab.setViewportView(busTable);
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +96,10 @@ public class Database extends JFrame {
 
                     cammionTrasaction.delete(value);
 
+                    List<Cammion> cammionList = cammionTrasaction.getAll();
+                    cammionTable = new JTable(new CammionTableModel(cammionList));
+                    cammionTab.setViewportView(cammionTable);
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -108,6 +119,10 @@ public class Database extends JFrame {
                     int value = (int) table.getValueAt(row, 0);
 
                     missionTrasaction.delete(value);
+
+                    List<Mission> missionList = missionTransaction.getAll();
+                    missionTable = new JTable(new MissionTableModel(missionList));
+                    missionTab.setViewportView(missionTable);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
