@@ -130,6 +130,20 @@ public class Database extends JFrame {
 
             }
         });
+
+        displayDetailsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                MissionTableModel table = (MissionTableModel) missionTable.getModel();
+
+                int row = missionTable.getSelectedRow();
+                int value = (int) table.getValueAt(row, 0);
+
+                MissionDetails missionDetails = new MissionDetails(value);
+
+            }
+        });
+
     }
 
 
@@ -144,22 +158,7 @@ public class Database extends JFrame {
 
     }
 
-    private void supprimerChauffeurBt() {
-        // TODO add your code here
-    }
 
-
-    private void supprimerCammionBt() {
-        // TODO add your code here
-    }
-
-    private void supprimerBusBt() {
-        // TODO add your code here
-    }
-
-    private void supprimerMissionBt() {
-        // TODO add your code here
-    }
 
 
     private void initComponents() {
@@ -182,6 +181,8 @@ public class Database extends JFrame {
         supprimerMissionButton = new JButton();
         missionTab = new JScrollPane();
         missionTable = new JTable();
+        displayDetailsButton = new JButton();
+        refreshMissionButton = new JButton();
 
         //======== Database ========
         {
@@ -197,7 +198,6 @@ public class Database extends JFrame {
                     supprimerChauffeurButton.setText("SUPPRIMER");
                     supprimerChauffeurButton.setBackground(new Color(60, 60, 53));
                     supprimerChauffeurButton.setForeground(new Color(254, 255, 241));
-                    supprimerChauffeurButton.addActionListener(e -> supprimerChauffeurBt());
                     ChauffeurContainer.add(supprimerChauffeurButton, BorderLayout.NORTH);
 
                     //======== chauffeurTab ========
@@ -217,7 +217,6 @@ public class Database extends JFrame {
                     supprimerCammionButton.setForeground(new Color(254, 255, 241));
                     supprimerCammionButton.setFocusPainted(false);
                     supprimerCammionButton.setFocusable(false);
-                    supprimerCammionButton.addActionListener(e -> supprimerCammionBt());
 
                     //======== cammionTab ========
                     {
@@ -232,7 +231,7 @@ public class Database extends JFrame {
                                 .addGroup(cammionContainerLayout.createParallelGroup()
                                     .addComponent(cammionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(supprimerCammionButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(9, Short.MAX_VALUE))
+                                .addContainerGap(70, Short.MAX_VALUE))
                     );
                     cammionContainerLayout.setVerticalGroup(
                         cammionContainerLayout.createParallelGroup()
@@ -252,7 +251,6 @@ public class Database extends JFrame {
                     supprimerBusButton.setText("SUPPRIMER");
                     supprimerBusButton.setBackground(new Color(60, 60, 53));
                     supprimerBusButton.setForeground(new Color(254, 255, 241));
-                    supprimerBusButton.addActionListener(e -> supprimerBusBt());
                     busContainer.add(supprimerBusButton, BorderLayout.NORTH);
 
                     //======== busTab ========
@@ -270,28 +268,46 @@ public class Database extends JFrame {
                     supprimerMissionButton.setText("SUPPRIMER");
                     supprimerMissionButton.setBackground(new Color(60, 60, 53));
                     supprimerMissionButton.setForeground(new Color(254, 255, 241));
-                    supprimerMissionButton.addActionListener(e -> supprimerMissionBt());
 
                     //======== missionTab ========
                     {
                         missionTab.setViewportView(missionTable);
                     }
 
+                    //---- displayDetailsButton ----
+                    displayDetailsButton.setText("DETAILS");
+                    displayDetailsButton.setBackground(new Color(60, 60, 53));
+                    displayDetailsButton.setForeground(new Color(254, 255, 241));
+
+                    //---- refreshMissionButton ----
+                    refreshMissionButton.setText("REFRESH");
+                    refreshMissionButton.setBackground(new Color(60, 60, 53));
+                    refreshMissionButton.setForeground(new Color(254, 255, 241));
+
                     GroupLayout missionContainerLayout = new GroupLayout(missionContainer);
                     missionContainer.setLayout(missionContainerLayout);
                     missionContainerLayout.setHorizontalGroup(
                         missionContainerLayout.createParallelGroup()
                             .addGroup(missionContainerLayout.createSequentialGroup()
-                                .addGroup(missionContainerLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(supprimerMissionButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addContainerGap(38, Short.MAX_VALUE)
+                                .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 32, Short.MAX_VALUE))
+                            .addGroup(missionContainerLayout.createSequentialGroup()
+                                .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(displayDetailsButton, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 181, Short.MAX_VALUE))
                     );
                     missionContainerLayout.setVerticalGroup(
                         missionContainerLayout.createParallelGroup()
                             .addGroup(missionContainerLayout.createSequentialGroup()
-                                .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(missionContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(displayDetailsButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
                                 .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                     );
@@ -334,5 +350,7 @@ public class Database extends JFrame {
     private JButton supprimerMissionButton;
     private JScrollPane missionTab;
     private JTable missionTable;
+    private JButton displayDetailsButton;
+    private JButton refreshMissionButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -5,7 +5,6 @@ public class Vehicule {
     protected String numero;
     protected String model;
     protected int capaRes;
-    protected int nbrSiege;
     protected double poids;
 
     public Vehicule(String numero, String model, int capaRes, double poids) {

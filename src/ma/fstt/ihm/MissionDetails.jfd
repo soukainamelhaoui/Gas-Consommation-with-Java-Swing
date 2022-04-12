@@ -1,0 +1,156 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:21:p, par l {seq {comp label18:::p:121:p, space :6:6:p, comp nbr_siege:::p:121:p, space :::p, comp label19:::p:121:p, space :6:6:p, comp type:::p:121:p}, seq {comp label15:::p:121:p, space :6:6:p, comp capa_res:::p:121:p, space :::p, comp label16:::p:121:p, space :6:6:p, comp poids:::p:121:p, space u:::p, comp label17:::p:121:p, space :6:6:p, comp capacite:::p:121:p}, comp label11:::p:121:p, seq {comp label5:::p:121:p, space :6:6:p, comp kilometrage:::p:121:p, space :::p, comp label6:::p:181:p, space :::p, comp consomationTheo:::p:121:p}, comp label1::l:p:121:p, seq l {comp label2:::p:121:p, space :::p, comp idMission:::p:121:p, space u:::p, comp label3:::p:121:p, space :6:6:p, comp depart:::p:121:p, space s:::p, comp label4:::p:121:p, space :6:6:p, comp arrive:::p:121:p}, comp label7::l:p:121:p, seq l {comp label8:::p:121:p, space :6:6:p, comp date_depart:::p:121:p, space s:::p, comp label9:::p:121:p, space :6:6:p, comp date_arrive:::p:121:p, space s:::p, comp label10:::p:121:p, space :6:6:p, comp consommation:::p:121:p}, seq l {comp label12:::p:121:p, space :6:6:p, comp idVehicule:::p:121:p, space u:::p, comp label13:::p:121:p, space :6:6:p, comp numeroVehicule:::p:121:p, space u:::p, comp label14:::p:121:p, space :6:6:p, comp modelVehicule:::p:121:p}}, space ::79:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:31:p, space u:::p, par l {par b {comp label2::b:p:31:p, comp idMission::b:p:31:p}, comp label3:::p:31:p, comp depart:::p:31:p, comp label4:::p:31:p, comp arrive:::p:31:p}, space :p:29:p, par l {comp label5:::p:31:p, comp kilometrage:::p:31:p, comp consomationTheo:::p:31:p, comp label6::l:p:31:p}, space u:::p, comp label7:::p:31:p, space :::p, par l {comp label8:::p:31:p, comp date_depart:::p:31:p, comp label9:::p:31:p, comp date_arrive:::p:31:p, comp label10:::p:31:p, comp consommation:::p:31:p}, space :::p, comp label11:::p:31:p, space :::p, par l {comp label12:::p:31:p, comp idVehicule:::p:31:p, comp label13:::p:31:p, comp numeroVehicule:::p:31:p, comp label14:::p:31:p, comp modelVehicule:::p:31:p}, space :::p, par l {comp label15:::p:31:p, comp capa_res:::p:31:p, comp label16:::p:31:p, comp poids:::p:31:p, comp label17:::p:31:p, comp capacite:::p:31:p}, space :::p, par l {comp label18:::p:31:p, comp nbr_siege:::p:31:p, comp label19:::p:31:p, comp type:::p:31:p}, space ::12:x}}"
+		} ) {
+			name: "MissionDetailsPane"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Mission:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "idMission"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "depart:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "depart"
+				"text": "id:depart"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "arrive:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "arrive"
+				"text": "id:depart"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "kilometrage:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "kilometrage"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "consomationTheorique:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "consomationTheo"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "Trajet:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "date_depart:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "date_depart"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "date_arrive:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "date_arrive"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "consommation:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "consommation"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "Vehicule:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label12"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "idVehicule"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label13"
+				"text": "numero:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "numeroVehicule"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label14"
+				"text": "model:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "modelVehicule"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label15"
+				"text": "capa_res:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "capa_res"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label16"
+				"text": "poids"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "poids"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "capacite"
+				"text": "NULL"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label17"
+				"text": "capacite"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label18"
+				"text": "nbr_siege:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "nbr_siege"
+				"text": "NULL"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "type"
+				"text": "id:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label19"
+				"text": "type:"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 880, 380 )
+		} )
+	}
+}

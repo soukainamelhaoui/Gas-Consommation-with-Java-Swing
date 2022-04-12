@@ -27,7 +27,6 @@ public class Cammion extends Vehicule{
                 ", numero='" + numero + '\'' +
                 ", model='" + model + '\'' +
                 ", capaRes=" + capaRes +
-                ", nbrSiege=" + nbrSiege +
                 ", poids=" + poids +
                 '}';
     }

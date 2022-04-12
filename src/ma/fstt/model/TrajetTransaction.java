@@ -36,8 +36,27 @@ public class TrajetTransaction extends BaseTransaction<Trajet>{
 
     }
 
+
     @Override
     public Trajet getOne(Integer id) throws SQLException {
+        String request = "SELECT * FROM Trajet WHERE id_mission = ?";
+
+        this.preparedStatement = this.connection.prepareStatement(request);
+
+        this.preparedStatement.setInt(1,id);
+
+        this.resultSet = this.preparedStatement.executeQuery();
+
+        while (this.resultSet.next()){
+
+            return new Trajet(
+                    this.resultSet.getString(2),
+                    this.resultSet.getString(3),
+                    this.resultSet.getDouble(4),
+                    this.resultSet.getInt(5),
+                    this.resultSet.getInt(6)
+            );
+        }
         return null;
     }
 
