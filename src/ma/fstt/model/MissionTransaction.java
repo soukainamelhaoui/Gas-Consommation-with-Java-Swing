@@ -40,12 +40,12 @@ public class MissionTransaction extends BaseTransaction<Mission>{
     }
 
     @Override
-    public void delete(Mission object) throws SQLException {
+    public void delete(int id) throws SQLException {
         String request = "DELETE FROM Mission WHERE Mission.id=?";
 
         this.preparedStatement = this.connection.prepareStatement(request);
 
-        this.preparedStatement.setInt(1,object.getIdMission());
+        this.preparedStatement.setInt(1,id);
 
         this.preparedStatement.execute();
 

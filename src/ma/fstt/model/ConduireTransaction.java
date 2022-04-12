@@ -18,7 +18,7 @@ public class ConduireTransaction extends BaseTransaction<Conduire>{
     }
 
     @Override
-    public void delete(Conduire object) throws SQLException {
+    public void delete(int id) throws SQLException {
 
     }
 

@@ -30,7 +30,7 @@ public class CarburantTransaction extends BaseTransaction<Carburant>{
     }
 
     @Override
-    public void delete(Carburant object) throws SQLException {
+    public void delete(int id) throws SQLException {
 
     }
 
