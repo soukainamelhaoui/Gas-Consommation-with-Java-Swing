@@ -10,30 +10,35 @@ new FormModel {
 			name: "Database"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "chauffeurPane"
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {comp chauffeurTab:::p:886:p, seq {comp supprimerChauffeurButton:::p:309:p, space :::p, comp refreshChauffeurButton:::p:309:p}}, space :::p}}"
+					"$verticalGroup": "par l {seq {par b {comp supprimerChauffeurButton::b:p::p, comp refreshChauffeurButton::b:p::p}, space :::p, comp chauffeurTab:::p:280:p}}"
+				} ) {
 					name: "ChauffeurContainer"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "supprimerChauffeurButton"
 						"text": "SUPPRIMER"
 						"background": &Color0 new java.awt.Color( 60, 60, 53, 255 )
 						"foreground": &Color1 new java.awt.Color( 254, 255, 241, 255 )
-					}, new FormLayoutConstraints( class java.lang.String ) {
-						"value": "North"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "chauffeurTab"
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "chauffeurTable"
 						} )
-					}, new FormLayoutConstraints( class java.lang.String ) {
-						"value": "Center"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "refreshChauffeurButton"
+						"text": "REFRESH"
+						"background": #Color0
+						"foreground": #Color1
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Chauffeur"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {comp cammionTab:::p:810:p, comp supprimerCammionButton:::::x}, space ::70:x}}"
-					"$verticalGroup": "par l {seq {comp supprimerCammionButton:::p:30:p, space :::p, comp cammionTab:::p:268:p}}"
+					"$horizontalGroup": "par l {seq {par l {comp cammionTab:::p:810:p, seq {comp supprimerCammionButton:::p:301:p, space u:::p, comp refreshCammionButton:::p:301:p}}, space ::82:x}}"
+					"$verticalGroup": "par l {seq {par b {comp supprimerCammionButton::b:p:30:p, comp refreshCammionButton::b:p::p}, space :::p, comp cammionTab:::p:268:p}}"
 				} ) {
 					name: "cammionContainer"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -50,32 +55,45 @@ new FormModel {
 							name: "cammionTable"
 						} )
 					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "refreshCammionButton"
+						"text": "REFRESH"
+						"background": #Color0
+						"foreground": #Color1
+						"focusPainted": false
+						"focusable": false
+					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Cammion"
 				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {comp busTab:::p:880:p, seq {comp supprimerBusButton:::p:335:p, space u:::p, comp refreshBusButton:::p:335:p}}, space :::p}}"
+					"$verticalGroup": "par l {seq {par b {comp supprimerBusButton::b:p::p, comp refreshBusButton::b:p::p}, space :::p, comp busTab:::p:280:p}}"
+				} ) {
 					name: "busContainer"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "supprimerBusButton"
 						"text": "SUPPRIMER"
 						"background": #Color0
 						"foreground": #Color1
-					}, new FormLayoutConstraints( class java.lang.String ) {
-						"value": "North"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "busTab"
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "busTable"
 						} )
-					}, new FormLayoutConstraints( class java.lang.String ) {
-						"value": "Center"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "refreshBusButton"
+						"text": "REFRESH"
+						"background": #Color0
+						"foreground": #Color1
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Bus"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space ::38:x, comp missionTab:::p:810:p, space :0:32:x}, seq l {comp supprimerMissionButton:::p:296:p, space :::p, comp displayDetailsButton:::p:167:p, space u:::p, comp refreshMissionButton:::p:218:p, space :0:181:x}}"
+					"$horizontalGroup": "par l {seq l {space ::44:x, comp missionTab:::p:810:p, space :0:38:x}, seq l {comp supprimerMissionButton:::p:296:p, space :::p, comp displayDetailsButton:::p:167:p, space u:::p, comp refreshMissionButton:::p:218:p, space :0:193:x}}"
 					"$verticalGroup": "par l {seq {par b {comp supprimerMissionButton::b:p:38:p, comp displayDetailsButton::b:p:38:p, comp refreshMissionButton::b:p:38:p}, space :p:12:p, comp missionTab:::p:248:p, space :::p}}"
 				} ) {
 					name: "missionContainer"
@@ -108,8 +126,8 @@ new FormModel {
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 25, 50 )
-			"size": new java.awt.Dimension( 815, 290 )
+			"location": new java.awt.Point( 20, 50 )
+			"size": new java.awt.Dimension( 825, 290 )
 		} )
 	}
 }

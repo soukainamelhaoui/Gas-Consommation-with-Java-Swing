@@ -14,6 +14,7 @@ public class Database extends JFrame {
 
     public Database() throws SQLException {
         initComponents();
+//        INITIAL DATA =======================================================
 //        Chauffeur
         ChauffeurTransaction chauffeurTransaction = new ChauffeurTransaction();
         List<Chauffeur> chauffeurList = chauffeurTransaction.getAll();
@@ -35,6 +36,8 @@ public class Database extends JFrame {
         List<Mission> missionList = missionTransaction.getAll();
         missionTable = new JTable(new MissionTableModel(missionList));
         missionTab.setViewportView(missionTable);
+
+//        SUPPRIMER BUTTON=======================================================
 
         supprimerChauffeurButton.addActionListener(new ActionListener() {
             @Override
@@ -130,6 +133,7 @@ public class Database extends JFrame {
 
             }
         });
+//        DETAILS BUTTON=======================================================
 
         displayDetailsButton.addActionListener(new ActionListener() {
             @Override
@@ -143,6 +147,63 @@ public class Database extends JFrame {
 
             }
         });
+//        REFRESH BUTTON=======================================================
+
+        refreshChauffeurButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                List<Chauffeur> chauffeurList = null;
+                try {
+                    chauffeurList = chauffeurTransaction.getAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                chauffeurTable = new JTable(new ChauffeurTableModel(chauffeurList));
+                chauffeurTab.setViewportView(chauffeurTable);
+            }
+        });
+
+        refreshMissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                List<Mission> missionList = null;
+                try {
+                    missionList = missionTransaction.getAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                missionTable = new JTable(new MissionTableModel(missionList));
+                missionTab.setViewportView(missionTable);
+            }
+        });
+
+        refreshBusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                List<Bus> busList = null;
+                try {
+                    busList = busTransaction.getAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                busTable = new JTable(new BusTableModel(busList));
+                busTab.setViewportView(busTable);
+            }
+        });
+
+        refreshCammionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                List<Cammion> cammionList = null;
+                try {
+                    cammionList = cammionTrasaction.getAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                cammionTable = new JTable(new CammionTableModel(cammionList));
+                cammionTab.setViewportView(cammionTable);
+            }
+        });
 
     }
 
@@ -154,8 +215,6 @@ public class Database extends JFrame {
         database.setTitle("GConsommation");
         database.setSize(1200, 400);
         database.setVisible(true);
-
-
     }
 
 
@@ -169,14 +228,17 @@ public class Database extends JFrame {
         supprimerChauffeurButton = new JButton();
         chauffeurTab = new JScrollPane();
         chauffeurTable = new JTable();
+        refreshChauffeurButton = new JButton();
         cammionContainer = new JPanel();
         supprimerCammionButton = new JButton();
         cammionTab = new JScrollPane();
         cammionTable = new JTable();
+        refreshCammionButton = new JButton();
         busContainer = new JPanel();
         supprimerBusButton = new JButton();
         busTab = new JScrollPane();
         busTable = new JTable();
+        refreshBusButton = new JButton();
         missionContainer = new JPanel();
         supprimerMissionButton = new JButton();
         missionTab = new JScrollPane();
@@ -192,19 +254,44 @@ public class Database extends JFrame {
 
                 //======== ChauffeurContainer ========
                 {
-                    ChauffeurContainer.setLayout(new BorderLayout());
 
                     //---- supprimerChauffeurButton ----
                     supprimerChauffeurButton.setText("SUPPRIMER");
                     supprimerChauffeurButton.setBackground(new Color(60, 60, 53));
                     supprimerChauffeurButton.setForeground(new Color(254, 255, 241));
-                    ChauffeurContainer.add(supprimerChauffeurButton, BorderLayout.NORTH);
 
                     //======== chauffeurTab ========
                     {
                         chauffeurTab.setViewportView(chauffeurTable);
                     }
-                    ChauffeurContainer.add(chauffeurTab, BorderLayout.CENTER);
+
+                    //---- refreshChauffeurButton ----
+                    refreshChauffeurButton.setText("REFRESH");
+                    refreshChauffeurButton.setBackground(new Color(60, 60, 53));
+                    refreshChauffeurButton.setForeground(new Color(254, 255, 241));
+
+                    GroupLayout ChauffeurContainerLayout = new GroupLayout(ChauffeurContainer);
+                    ChauffeurContainer.setLayout(ChauffeurContainerLayout);
+                    ChauffeurContainerLayout.setHorizontalGroup(
+                        ChauffeurContainerLayout.createParallelGroup()
+                            .addGroup(ChauffeurContainerLayout.createSequentialGroup()
+                                .addGroup(ChauffeurContainerLayout.createParallelGroup()
+                                    .addComponent(chauffeurTab, GroupLayout.PREFERRED_SIZE, 886, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ChauffeurContainerLayout.createSequentialGroup()
+                                        .addComponent(supprimerChauffeurButton, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(refreshChauffeurButton, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
+                    );
+                    ChauffeurContainerLayout.setVerticalGroup(
+                        ChauffeurContainerLayout.createParallelGroup()
+                            .addGroup(ChauffeurContainerLayout.createSequentialGroup()
+                                .addGroup(ChauffeurContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(supprimerChauffeurButton)
+                                    .addComponent(refreshChauffeurButton))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chauffeurTab, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
+                    );
                 }
                 chauffeurPane.addTab("Chauffeur", ChauffeurContainer);
 
@@ -223,6 +310,13 @@ public class Database extends JFrame {
                         cammionTab.setViewportView(cammionTable);
                     }
 
+                    //---- refreshCammionButton ----
+                    refreshCammionButton.setText("REFRESH");
+                    refreshCammionButton.setBackground(new Color(60, 60, 53));
+                    refreshCammionButton.setForeground(new Color(254, 255, 241));
+                    refreshCammionButton.setFocusPainted(false);
+                    refreshCammionButton.setFocusable(false);
+
                     GroupLayout cammionContainerLayout = new GroupLayout(cammionContainer);
                     cammionContainer.setLayout(cammionContainerLayout);
                     cammionContainerLayout.setHorizontalGroup(
@@ -230,13 +324,18 @@ public class Database extends JFrame {
                             .addGroup(cammionContainerLayout.createSequentialGroup()
                                 .addGroup(cammionContainerLayout.createParallelGroup()
                                     .addComponent(cammionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(supprimerCammionButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(70, Short.MAX_VALUE))
+                                    .addGroup(cammionContainerLayout.createSequentialGroup()
+                                        .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(refreshCammionButton, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(82, Short.MAX_VALUE))
                     );
                     cammionContainerLayout.setVerticalGroup(
                         cammionContainerLayout.createParallelGroup()
                             .addGroup(cammionContainerLayout.createSequentialGroup()
-                                .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(cammionContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(supprimerCammionButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(refreshCammionButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cammionTab, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))
                     );
@@ -245,19 +344,44 @@ public class Database extends JFrame {
 
                 //======== busContainer ========
                 {
-                    busContainer.setLayout(new BorderLayout());
 
                     //---- supprimerBusButton ----
                     supprimerBusButton.setText("SUPPRIMER");
                     supprimerBusButton.setBackground(new Color(60, 60, 53));
                     supprimerBusButton.setForeground(new Color(254, 255, 241));
-                    busContainer.add(supprimerBusButton, BorderLayout.NORTH);
 
                     //======== busTab ========
                     {
                         busTab.setViewportView(busTable);
                     }
-                    busContainer.add(busTab, BorderLayout.CENTER);
+
+                    //---- refreshBusButton ----
+                    refreshBusButton.setText("REFRESH");
+                    refreshBusButton.setBackground(new Color(60, 60, 53));
+                    refreshBusButton.setForeground(new Color(254, 255, 241));
+
+                    GroupLayout busContainerLayout = new GroupLayout(busContainer);
+                    busContainer.setLayout(busContainerLayout);
+                    busContainerLayout.setHorizontalGroup(
+                        busContainerLayout.createParallelGroup()
+                            .addGroup(busContainerLayout.createSequentialGroup()
+                                .addGroup(busContainerLayout.createParallelGroup()
+                                    .addComponent(busTab, GroupLayout.PREFERRED_SIZE, 880, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(busContainerLayout.createSequentialGroup()
+                                        .addComponent(supprimerBusButton, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(refreshBusButton, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
+                    );
+                    busContainerLayout.setVerticalGroup(
+                        busContainerLayout.createParallelGroup()
+                            .addGroup(busContainerLayout.createSequentialGroup()
+                                .addGroup(busContainerLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(supprimerBusButton)
+                                    .addComponent(refreshBusButton))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(busTab, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
+                    );
                 }
                 chauffeurPane.addTab("Bus", busContainer);
 
@@ -289,16 +413,16 @@ public class Database extends JFrame {
                     missionContainerLayout.setHorizontalGroup(
                         missionContainerLayout.createParallelGroup()
                             .addGroup(missionContainerLayout.createSequentialGroup()
-                                .addContainerGap(38, Short.MAX_VALUE)
+                                .addContainerGap(44, Short.MAX_VALUE)
                                 .addComponent(missionTab, GroupLayout.PREFERRED_SIZE, 810, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 32, Short.MAX_VALUE))
+                                .addGap(0, 38, Short.MAX_VALUE))
                             .addGroup(missionContainerLayout.createSequentialGroup()
                                 .addComponent(supprimerMissionButton, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(displayDetailsButton, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(refreshMissionButton, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 181, Short.MAX_VALUE))
+                                .addGap(0, 193, Short.MAX_VALUE))
                     );
                     missionContainerLayout.setVerticalGroup(
                         missionContainerLayout.createParallelGroup()
@@ -338,14 +462,17 @@ public class Database extends JFrame {
     private JButton supprimerChauffeurButton;
     private JScrollPane chauffeurTab;
     private JTable chauffeurTable;
+    private JButton refreshChauffeurButton;
     private JPanel cammionContainer;
     private JButton supprimerCammionButton;
     private JScrollPane cammionTab;
     private JTable cammionTable;
+    private JButton refreshCammionButton;
     private JPanel busContainer;
     private JButton supprimerBusButton;
     private JScrollPane busTab;
     private JTable busTable;
+    private JButton refreshBusButton;
     private JPanel missionContainer;
     private JButton supprimerMissionButton;
     private JScrollPane missionTab;
