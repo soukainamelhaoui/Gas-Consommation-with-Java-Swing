@@ -37,7 +37,7 @@ public class CammionTrasaction extends BaseTransaction<Cammion>{
         this.preparedStatement.setInt(3,object.getCapaRes());
         this.preparedStatement.setDouble(4,object.getPoids());
         this.preparedStatement.setInt(5,object.getCapacite());
-        this.preparedStatement.setString(6,"CAMMION");
+        this.preparedStatement.setInt(6,object.getIdVehicule());
 
         this.preparedStatement.execute();
 

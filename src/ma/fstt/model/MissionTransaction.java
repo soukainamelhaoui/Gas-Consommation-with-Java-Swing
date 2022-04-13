@@ -35,6 +35,7 @@ public class MissionTransaction extends BaseTransaction<Mission>{
         this.preparedStatement.setString(2,object.getArrive());
         this.preparedStatement.setDouble(3,object.getKilometrage());
         this.preparedStatement.setDouble(4,object.getConsommationTheo());
+        this.preparedStatement.setInt(5,object.getIdMission());
 
         this.preparedStatement.execute();
     }

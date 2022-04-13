@@ -227,7 +227,11 @@ public class Database extends JFrame {
                 int row = cammionTable.getSelectedRow();
                 int value = (int) table.getValueAt(row, 0);
 
-                CammionEdit cammionEdit = new CammionEdit(value);
+                try {
+                    CammionEdit cammionEdit = new CammionEdit(value);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -239,7 +243,11 @@ public class Database extends JFrame {
                 int row = busTable.getSelectedRow();
                 int value = (int) table.getValueAt(row, 0);
 
-                BusEdit busEdit = new BusEdit(value);
+                try {
+                    BusEdit busEdit = new BusEdit(value);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -251,7 +259,11 @@ public class Database extends JFrame {
                 int row = missionTable.getSelectedRow();
                 int value = (int) table.getValueAt(row, 0);
 
-                MissionEdit missionEdit = new MissionEdit(value);
+                try {
+                    MissionEdit missionEdit = new MissionEdit(value);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

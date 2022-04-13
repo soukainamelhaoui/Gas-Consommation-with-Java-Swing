@@ -36,7 +36,7 @@ public class BusTransaction extends BaseTransaction<Bus>{
         this.preparedStatement.setInt(3,object.getCapaRes());
         this.preparedStatement.setDouble(4,object.getPoids());
         this.preparedStatement.setInt(5,object.getNbrSiege());
-        this.preparedStatement.setString(6,"CAMMION");
+        this.preparedStatement.setInt(6,object.getIdVehicule());
 
         this.preparedStatement.execute();
 
@@ -71,7 +71,7 @@ public class BusTransaction extends BaseTransaction<Bus>{
                     this.resultSet.getString(3),
                     this.resultSet.getInt(4),
                     this.resultSet.getDouble(5),
-                    this.resultSet.getInt(6)
+                    this.resultSet.getInt(7)
             );
             temp.setIdVehicule(this.resultSet.getInt(1));
 
@@ -99,7 +99,7 @@ public class BusTransaction extends BaseTransaction<Bus>{
                     this.resultSet.getString(3),
                     this.resultSet.getInt(4),
                     this.resultSet.getDouble(5),
-                    this.resultSet.getInt(6)
+                    this.resultSet.getInt(7)
             );
             temp.setIdVehicule(this.resultSet.getInt(1));
 

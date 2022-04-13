@@ -1,16 +1,65 @@
 package ma.fstt.ihm;
 
+import ma.fstt.model.Cammion;
+import ma.fstt.model.CammionTrasaction;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class CammionEdit extends JFrame {
     private JPanel cammionEditPanel;
+    private JTextField numeroInput;
+    private JTextField modelInput;
+    private JTextField capa_resInput;
+    private JTextField poidsInput;
+    private JTextField capaciteInput;
+    private JButton enregistrerButton;
+    private JLabel numero;
+    private Cammion cammion;
 
-    public CammionEdit(Integer tempCammion) {
+    public Cammion getCammion() {
+        return cammion;
+    }
+
+    public void setCammion(Cammion cammion) {
+        this.cammion = cammion;
+    }
+
+    public CammionEdit(Integer tempCammion) throws SQLException {
         setContentPane(cammionEditPanel);
         setTitle("Modifier Cammion");
         setSize(500, 800);
         setVisible(true);
+
+        CammionTrasaction cammionTrasaction;
+
+        cammionTrasaction = new CammionTrasaction();
+        this.setCammion(cammionTrasaction.getOne(tempCammion));
+        numeroInput.setText(cammion.getNumero());
+        modelInput.setText(cammion.getModel());
+        capaciteInput.setText(String.valueOf(cammion.getCapacite()));
+        capa_resInput.setText(String.valueOf(cammion.getCapaRes()));
+        poidsInput.setText(String.valueOf(cammion.getPoids()));
+
+        enregistrerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                cammion.setCapacite(Integer.parseInt(capaciteInput.getText()));
+                cammion.setCapaRes(Integer.parseInt(capa_resInput.getText()));
+                cammion.setPoids(Double.parseDouble(poidsInput.getText()));
+                cammion.setModel(modelInput.getText());
+                cammion.setNumero(numeroInput.getText());
+
+                try {
+                    cammionTrasaction.update(cammion);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     {
@@ -29,7 +78,39 @@ public class CammionEdit extends JFrame {
      */
     private void $$$setupUI$$$() {
         cammionEditPanel = new JPanel();
-        cammionEditPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        cammionEditPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 2, new Insets(0, 0, 0, 0), -1, -1));
+        final JLabel label1 = new JLabel();
+        label1.setText("Modifier les informations du mission");
+        cammionEditPanel.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        numero = new JLabel();
+        numero.setText("numero");
+        cammionEditPanel.add(numero, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("model");
+        cammionEditPanel.add(label2, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label3 = new JLabel();
+        label3.setText("capa_res");
+        cammionEditPanel.add(label3, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label4 = new JLabel();
+        label4.setText("poids");
+        cammionEditPanel.add(label4, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label5 = new JLabel();
+        label5.setText("capacite");
+        cammionEditPanel.add(label5, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        numeroInput = new JTextField();
+        cammionEditPanel.add(numeroInput, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        modelInput = new JTextField();
+        cammionEditPanel.add(modelInput, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        capa_resInput = new JTextField();
+        capa_resInput.setText("");
+        cammionEditPanel.add(capa_resInput, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        poidsInput = new JTextField();
+        cammionEditPanel.add(poidsInput, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        capaciteInput = new JTextField();
+        cammionEditPanel.add(capaciteInput, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        enregistrerButton = new JButton();
+        enregistrerButton.setText("Enregistrer");
+        cammionEditPanel.add(enregistrerButton, new com.intellij.uiDesigner.core.GridConstraints(6, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -38,4 +119,5 @@ public class CammionEdit extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return cammionEditPanel;
     }
+
 }
